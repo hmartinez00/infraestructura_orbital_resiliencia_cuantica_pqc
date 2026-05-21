@@ -1,0 +1,25 @@
+\section{Conclusiones y Trabajos Futuros}
+
+\subsection{Conclusiones principales}
+
+Particularmente llamativo es el hecho de que un problema que hace apenas una década parecía especulativo —la amenaza cuántica a infraestructuras orbitales— se haya convertido en una prioridad de diseño concreta para la próxima generación de constelaciones. Este trabajo ha propuesto un marco integral para dotar a las redes satelitales de resiliencia cuántica mediante la integración sistemática y consciente de las limitaciones espaciales de algoritmos poscuánticos estandarizados por el NIST \cite{NIST_PQC2024}.
+
+El marco de cinco capas, los protocolos híbridos con agilidad criptográfica y los mecanismos distribuidos de gestión de claves y resiliencia demuestran que es posible alcanzar niveles de seguridad NIST III-V manteniendo un overhead operativo viable en entornos LEO y MEO. Los resultados de simulación y emulación revelan mejoras sustanciales frente a enfoques previos, especialmente en el equilibrio entre latencia, consumo energético y escalabilidad a constelaciones de cientos o miles de nodos. 
+
+Más allá de los números, la contribución principal radica en haber abordado el problema de forma holística: no solo seleccionando primitivas fuertes, sino diseñando una arquitectura que considera la dinámica orbital, la radiación y los ciclos de vida reales de los satélites. El resultado es un camino practicable que conecta estándares terrestres maduros con las demandas únicas del espacio.
+
+\subsection{Limitaciones del estudio}
+
+Uno de los desafíos persistentes al realizar investigación en sistemas espaciales radica en la brecha inevitable entre modelos y realidad orbital. Aunque nuestras evaluaciones combinaron simulaciones de alta fidelidad con emulación en hardware representativo, no incluyen todavía datos de vuelo real. Esta limitación afecta especialmente el comportamiento bajo radiación acumulada y eventos SEU impredecibles.
+
+Además, el marco asume ciertos parámetros sobre la madurez de hardware tolerante a radiación y sobre el timeline de computadoras cuánticas criptográficamente relevantes. En muchos casos estudiados, estas suposiciones tienden a ser optimistas. Tampoco exploramos en profundidad aspectos económicos de despliegue ni la interoperabilidad completa con sistemas de terceros ya en órbita. Estas restricciones, aunque comunes en trabajos de esta naturaleza, merecen ser reconocidas abiertamente para contextualizar adecuadamente los hallazgos.
+
+\subsection{Trabajos futuros}
+
+Lejos de ser un asunto resuelto, el camino hacia infraestructuras orbitales plenamente resilientes a amenazas cuánticas apenas comienza. Kim et al. identifican múltiples brechas que nuestro marco ayuda a cerrar parcialmente, pero que requieren esfuerzos sostenidos a lo largo de la próxima década \cite{Kim2026}.
+
+Entre las direcciones más prometedoras destacan la optimización hardware-specific de algoritmos lattice-based para FPGAs y ASICs espaciales de nueva generación, la verificación formal de protocolos híbridos a escala de constelación y la implementación de pruebas en órbita mediante misiones de demostración. Igualmente relevante resulta investigar mecanismos de agilidad criptográfica impulsados por inteligencia artificial que puedan responder en tiempo real a anomalías detectadas.
+
+Otras líneas abiertas incluyen la integración con QKD satelital en arquitecturas multi-layer, el estudio de side-channel attacks específicos en entornos de baja potencia y radiación, y el desarrollo de modelos económicos que incentiven la transición temprana por parte de operadores comerciales. 
+
+Resulta claro que el verdadero valor de este trabajo no reside solo en las soluciones presentadas, sino en la hoja de ruta que ayuda a estructurar esfuerzos futuros. Si la comunidad espacial logra mantener el momentum actual, es razonable esperar que hacia finales de la década de 2030 contemos con constelaciones operativas que no solo sobrevivan a la era cuántica, sino que establezcan un nuevo estándar de seguridad y confiabilidad en las comunicaciones críticas del futuro.

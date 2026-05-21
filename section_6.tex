@@ -1,0 +1,41 @@
+\section{Discusión y Desafíos de Implementación}
+
+\subsection{Consideraciones de estandarización CCSDS}
+
+Resulta revelador observar cómo los organismos de estandarización espacial avanzan con cautela mientras la amenaza cuántica exige urgencia. Aunque los protocolos CCSDS han demostrado robustez durante décadas, su adaptación a primitivas PQC requiere más que simples sustituciones de algoritmos. 
+
+Ghosh et al. destacan en su análisis lattice-based las dificultades para integrar nuevas construcciones criptográficas sin romper interoperabilidad con sistemas legacy \cite{Ghosh2026}. En nuestro marco, proponemos extensiones a protocolos como Space Packet Protocol y Bundle Protocol que incorporan campos de negociación criptográfica y modos híbridos. Estas modificaciones, no obstante, demandan consenso amplio y múltiples rondas de validación. Particularmente llamativo es el hecho de que la lentitud inherente de los procesos de estandarización podría generar un desfase peligroso entre capacidades técnicas disponibles y despliegues reales.
+
+\begin{table}[t]
+\centering
+\caption{Comparación del marco propuesto con enfoques existentes de seguridad satelital}
+\label{tab:comparacion_enfoques}
+\begin{tabular}{lccc}
+\hline
+\textbf{Enfoque} & \textbf{Resiliencia Cuántica} & \textbf{Overhead Energético} & \textbf{Escalabilidad Constelación} \\
+\hline
+Clásico (actual) & Nula & Bajo & Alta \\
+QKD satelital & Alta (info-theoretic) & Muy Alto & Baja \\
+Híbrido genérico & Media & Medio & Media \\
+Propuesta (este trabajo) & Alta & Medio-Bajo & Alta \\
+\hline
+\end{tabular}
+\end{table}
+
+La tabla anterior ilustra cómo nuestro enfoque busca un equilibrio práctico, aunque requiere actualizaciones significativas en los libros azules de la CCSDS.
+
+\subsection{Radiación y longevidad en órbita}
+
+Uno de los desafíos persistentes que surge al analizar despliegues PQC radica en la interacción entre algoritmos matemáticamente intensivos y el entorno radiativo hostil. Ghosh y colaboradores enfatizan que las implementaciones lattice-based son particularmente sensibles a single-event effects que pueden corromper cálculos polinomiales o estados internos \cite{Ghosh2026}.
+
+En muchos casos estudiados, las técnicas de protección por triplicación modular (TMR) o codificación de error incrementan aún más el consumo de recursos ya escasos. Nuestro marco incorpora checksums criptográficos ligeros y chequeos de integridad periódicos a nivel de sesión, pero cabe matizar que estas medidas añaden overhead y no eliminan completamente el riesgo. La longevidad de los satélites —frecuentemente diseñados para 5-7 años en LEO— impone que los esquemas PQC no solo sean eficientes al lanzamiento, sino que mantengan rendimiento aceptable tras años de degradación por radiación total ionizante.
+
+\subsection{Hoja de ruta de migración}
+
+Lejos de ser un asunto resuelto, la transición hacia infraestructuras orbitales poscuánticas exige planificación coordinada a escala de industria. Kim et al. identifican quince brechas críticas y proponen un roadmap tentativo hasta 2040 que sirve de base para nuestra propia hoja de ruta \cite{Kim2026}.
+
+Proponemos tres fases. La primera (2025-2028) se centra en despliegues híbridos y pruebas en órbita de algoritmos NIST seleccionados. La segunda (2028-2032) busca agilidad criptográfica completa y estandarización CCSDS. Finalmente, hacia 2035-2040 se espera migración mayoritaria a PQC nativo con soporte residual clásico mínimo. 
+
+Aunque esta cronología parece razonable sobre el papel, en la práctica enfrenta obstáculos importantes: ciclos de desarrollo de satélites largos, diversidad de operadores y la incertidumbre sobre el timeline real de computadoras cuánticas criptográficamente relevantes. No obstante, retrasar decisiones estratégicas solo amplía la ventana de vulnerabilidad harvest-now-decrypt-later.
+
+El marco que presentamos a lo largo de este artículo ofrece un camino viable, aunque imperfecto, para cerrar parte de las brechas identificadas. Queda claro que la colaboración entre academia, industria y agencias espaciales resultará indispensable. Solo mediante iteración continua entre teoría, simulación y vuelos de demostración conseguiremos infraestructuras orbitales que no meramente sobrevivan, sino que lideren la era de la resiliencia cuántica.

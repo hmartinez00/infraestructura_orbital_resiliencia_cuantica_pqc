@@ -1,0 +1,47 @@
+\section{Fundamentos Técnicos}
+
+\subsection{Algoritmos lattice-based y hash-based}
+
+Resulta revelador observar cómo los problemas de retículos (lattices) han pasado de ser curiosidades matemáticas a constituir el pilar de la criptografía poscuántica práctica. Particularmente llamativo es el hecho de que suposiciones de dureza como Learning With Errors (LWE) y su variante Ring-LWE ofrezcan una base de seguridad que resiste incluso a adversarios equipados con computadoras cuánticas de gran escala.
+
+Ghosh y colaboradores profundizan en estas suposiciones de dureza aplicadas específicamente a escenarios satelitales, destacando que las optimizaciones necesarias para cumplir con restricciones orbitales no deben comprometer las garantías de reducción de seguridad \cite{Ghosh2026}. En el caso de ML-KEM, el algoritmo de encapsulación clave basado en módulos, la complejidad computacional se puede expresar de forma simplificada como:
+
+\begin{equation}
+\text{Complejidad} \approx O(n \log n \cdot q) + \text{costo de muestreo Gaussiano}
+\label{eq:complejidad_mlkem}
+\end{equation}
+
+donde \(n\) representa la dimensión del módulo, \(q\) el módulo primo y el término de muestreo Gaussiano suele dominar en implementaciones embebidas. Esta ecuación (Eq. 1) ilustra por qué las optimizaciones a nivel de implementación resultan críticas: pequeñas mejoras en el muestreo o en la multiplicación polinomial pueden traducirse en ahorros energéticos significativos a bordo de un satélite.
+
+Los algoritmos hash-based, como SLH-DSA, ofrecen por su parte seguridad conservadora basada en propiedades de funciones hash resistentes a colisiones. Aunque más lentos en firma, su resistencia demostrable y menor dependencia de estructuras algebraicas los convierten en candidatos valiosos para autenticación en entornos donde la predictibilidad de recursos es baja.
+
+\subsection{Modelos de canales satelitales y restricciones de recursos}
+
+Uno de los desafíos persistentes que surge al analizar implementaciones PQC en órbita radica en la brecha entre suposiciones de laboratorio y la cruda realidad de los canales espacio-tierra. Desvanecimiento Rice, desplazamiento Doppler severo debido a velocidades relativas de hasta 7,8 km/s en LEO y variaciones drásticas de señal a ruido imponen requisitos únicos que pocos diseños terrestres consideran.
+
+Kim et al. recopilan en su revisión sistemática datos cuantitativos valiosos sobre el comportamiento real de estas primitivas en hardware espacial \cite{Kim2026}. La Tabla 3 resume requerimientos observados en FPGAs tolerantes a radiación representativas.
+
+\begin{table}[t]
+\centering
+\caption{Requerimientos computacionales de algoritmos PQC en FPGA espaciales}
+\label{tab:requerimientos_fpga}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Algoritmo} & \textbf{LUTs (\%)} & \textbf{BRAM (\%)} & \textbf{Potencia (W)} & \textbf{Frec. máx. (MHz)} \\
+\hline
+ML-KEM-768 & 42 & 28 & 1.85 & 145 \\
+ML-DSA-65 & 67 & 41 & 2.94 & 112 \\
+SLH-DSA & 81 & 35 & 3.67 & 98 \\
+\hline
+\end{tabular}
+\end{table}
+
+Estos números tienden a subrayar una realidad incómoda: aunque los avances en silicio tolerante a radiación han sido notables, el margen de maniobra sigue siendo estrecho. En muchos casos estudiados, los diseñadores deben elegir entre rendimiento y robustez ante eventos de single-event upset, una decisión que afecta directamente la viabilidad de despliegues a largo plazo.
+
+\subsection{Métricas de resiliencia cuántica}
+
+Lejos de ser un asunto resuelto, la medición de resiliencia cuántica requiere un conjunto de métricas que trascienda el clásico bits de seguridad. Resulta esencial considerar no solo la complejidad computacional requerida para romper una instancia concreta, sino también la agilidad para actualizar claves, la tolerancia a compromisos parciales y la degradación graciosa ante fallos.
+
+Entre las métricas más relevantes destacan el nivel de seguridad NIST (I a V), el tiempo de exposición a ataques harvest-now-decrypt-later y la entropía efectiva de las claves generadas bajo restricciones de entropía de hardware espacial. No obstante, cabe matizar que muchas evaluaciones existentes asumen adversarios con capacidades ideales, mientras que en escenarios orbitales reales las limitaciones de observación y el ruido del canal pueden, paradójicamente, ofrecer alguna protección adicional o, por el contrario, abrir vectores de ataque por side-channel.
+
+La integración coherente de estas métricas con los modelos de canal y las restricciones de hardware establecidos previamente sienta las bases para el marco arquitectónico que proponemos. Solo mediante esta consideración holística es posible avanzar hacia infraestructuras orbitales que no solo resistan amenazas cuánticas teóricas, sino que mantengan rendimiento y confiabilidad bajo condiciones operativas reales.

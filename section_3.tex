@@ -21,7 +21,7 @@ Uno de los desafíos persistentes que surge al analizar implementaciones PQC en 
 
 Kim et al. recopilan en su revisión sistemática datos cuantitativos valiosos sobre el comportamiento real de estas primitivas en hardware espacial \cite{Kim2026}. La Tabla 3 resume requerimientos observados en FPGAs tolerantes a radiación representativas.
 
-\begin{table}[t]
+\begin{table*}[t]
 \centering
 \caption{Requerimientos computacionales de algoritmos PQC en FPGA espaciales}
 \label{tab:requerimientos_fpga}
@@ -34,7 +34,7 @@ ML-DSA-65 & 67 & 41 & 2.94 & 112 \\
 SLH-DSA & 81 & 35 & 3.67 & 98 \\
 \hline
 \end{tabular}
-\end{table}
+\end{table*}
 
 Estos números tienden a subrayar una realidad incómoda: aunque los avances en silicio tolerante a radiación han sido notables, el margen de maniobra sigue siendo estrecho. En muchos casos estudiados, los diseñadores deben elegir entre rendimiento y robustez ante eventos de single-event upset, una decisión que afecta directamente la viabilidad de despliegues a largo plazo.
 

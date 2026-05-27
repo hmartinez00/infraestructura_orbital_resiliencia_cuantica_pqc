@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+    \begin{groupplot}[
+        group style={group size=3 by 1, horizontal sep=1.5cm},
+        width=0.33\textwidth, height=0.33\textwidth,
+        axis line style={thick}, tick style={thick}
+    ]
+    % (a) Latencia
+    \nextgroupplot[title={(a)}, xlabel={Density}, ylabel={Latency}]
+    \addplot[blue, thick, mark=*] coordinates {(0,0) (5,5)};
+    \addplot[gray, thick, mark=square] coordinates {(0,1) (5,8)};
+
+    % (b) Energía
+    \nextgroupplot[title={(b)}, xlabel={Time}, ylabel={Energy}]
+    \addplot[blue, thick, domain=-3:3, samples=50] {exp(-x^2/2)};
+    \addplot[gray, thick, domain=-3:3, samples=50] {2*exp(-x^2/0.5)};
+
+    % (c) Throughput
+    \nextgroupplot[title={(c)}, xlabel={Angle}, ylabel={Throughput}]
+    \addplot[blue, thick, mark=*] coordinates {(0,8) (7,4)};
+    \addplot[gray, thick, mark=square] coordinates {(0,7) (7,0)};
+    \end{groupplot}
+\end{tikzpicture}
